@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\EventAddOnController;
 use App\Http\Controllers\EventSpaceController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventPackageController;
 
 Route::apiResource('event_spaces', EventSpaceController::class);
 Route::apiResource('event_packages', EventPackageController::class);
+Route::apiResource('event_add_ons', EventAddOnController::class);
 
 // Event Package Routes
 // Route::prefix('event-packages')->group(function () {
