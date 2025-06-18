@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Utils\HttpResponse;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -14,6 +15,8 @@ class BaseController extends Controller
      * @var \Illuminate\Database\Eloquent\Model
      */
 
+    use HttpResponse;
+
     public $model;
 
     public function __construct(Model $model)
@@ -25,40 +28,24 @@ class BaseController extends Controller
      * Display a listing of the resource with the filter applied.
      * @return array|object list of all resource in the model
      */
-    public function getAll($filter = [])
+    public function index()
     {
-        if (!empty($filter)) {
-            return $this->model->with($this->model->relations())->where($filter)->get();
-        }
+        // if (!empty($filter)) {
+        //     return $this->model->with($this->model->relations())->where($filter)->get();
+        // }
 
-        return $this->model->with($this->model->relations())->get();
+        $data = $this->model->with($this->model->relations())->get();
+        return $this->success("Success", $data);
     }
 
     /**
      * Display a listing of the resource by Id
      * @return array|object list of all resource in the model
      */
-    public function getById($id)
+    public function show($id)
     {
-        return $this->model->with($this->model->relations())->find($id);
-    }
-
-    /**
-     * get validation rules
-     * @return array of validation Rules
-     */
-    public function getValidationRules()
-    {
-        return $this->model->validationRules();
-    }
-
-    /**
-     * get validation rules
-     * @return array of validation Message
-     */
-    public function getValidationMessages()
-    {
-        return $this->model->validationMessages();
+        $data = $this->model->with($this->model->relations())->find($id);
+        return $this->success("Success", $data);
     }
 
     /**
@@ -71,10 +58,11 @@ class BaseController extends Controller
 
         $valid = Validator::make($requestFillable, $this->model->validationRules(), $this->model->validationMessages());
         if ($valid->fails()) {
-            return ['error' => $valid->errors()];
+            return $this->error($valid->errors()->first());
         }
 
-        return $this->model->create($requestFillable);
+        $data =  $this->model->create($requestFillable);
+        return $this->success("Success", $data);
     }
 
     /**
@@ -87,10 +75,11 @@ class BaseController extends Controller
 
         $valid = Validator::make($requestFillable, $this->model->validationRules(), $this->model->validationMessages());
         if ($valid->fails()) {
-            return ['error' => $valid->errors()];
+            return $this->error($valid->errors()->first());
         }
 
-        return $this->model->firstOrCreate($requestFillable);
+        $data =  $this->model->firstOrCreate($requestFillable);
+        return $this->success("Success", $data);
     }
 
     /**
@@ -103,17 +92,17 @@ class BaseController extends Controller
 
         $valid = Validator::make($requestFillable, $this->model->validationRules(), $this->model->validationMessages());
         if ($valid->fails()) {
-            return ['error' => $valid->errors()];
+            return $this->error($valid->errors()->first());
         }
 
         $update = $this->model->find($id);
         if (!$update) {
-            return ['error' => 'Id not Found!!'];
+            return $this->error("ID not Found!");
         }
 
         $update->update($requestFillable);
 
-        return $update;
+        return $this->success("Update success", $update);
     }
 
     /**
@@ -131,14 +120,16 @@ class BaseController extends Controller
         }
         $model->save();
 
-        return $model->refresh();
+        $model->refresh();
+
+        return $this->success("Updated successfully!", $model);
     }
 
     /**
      * Remove the specified resource from storage.
      * @return array message either error or success (key)
      */
-    public function delete($id)
+    public function destroy($id)
     {
         $delete = $this->model->find($id);
         if (!$delete) {
@@ -146,6 +137,6 @@ class BaseController extends Controller
         }
         $delete->delete();
 
-        return ['success' => 'Deleted Successfully!!'];
+        return $this->success("Successfully Deleted!");
     }
 }
