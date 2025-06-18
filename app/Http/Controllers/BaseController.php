@@ -28,15 +28,13 @@ class BaseController extends Controller
      * Display a listing of the resource with the filter applied.
      * @return array|object list of all resource in the model
      */
-    public function index()
+    public function index(Request $request)
     {
-        // if (!empty($filter)) {
-        //     return $this->model->with($this->model->relations())->where($filter)->get();
-        // }
-
-        $data = $this->model->with($this->model->relations())->paginate(5);
+        $perPage = $request->query('per_page', 5); // default tetap 5 kalau gak dikirim
+        $data = $this->model->with($this->model->relations())->paginate($perPage);
         return $this->success("Success", $data);
     }
+
 
     /**
      * Display a listing of the resource by Id
