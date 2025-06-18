@@ -18,15 +18,20 @@ class EventPackageController extends BaseController
     {
         parent::__construct($model);
     }
-    
+
     public function search(Request $request)
     {
         $query = EventPackage::query();
-        if ($request->search) {
-            $query->where('name', 'like', '%' . $request->search . '%')
-                ->orWhere('id', $request->search);
+
+        if ($request->has('search') && $request->search !== '') {
+            $query->where(function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->search . '%')
+                    ->orWhere('id', $request->search);
+            });
         }
-        $packages = $query->orderBy('id')->get();
-        return $this->success($packages);
+
+        $data = $query->orderBy('id')->paginate(5);
+
+        return $this->success("Success", $data);
     }
 }
