@@ -42,4 +42,9 @@ class EventPackage extends Model
     {
         return $this->hasMany(EventReservation::class);
     }
+
+    public function relations()
+    {
+        return [];
+    }
 }

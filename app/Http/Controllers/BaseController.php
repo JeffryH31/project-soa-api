@@ -34,7 +34,7 @@ class BaseController extends Controller
         //     return $this->model->with($this->model->relations())->where($filter)->get();
         // }
 
-        $data = $this->model->with($this->model->relations())->get();
+        $data = $this->model->with($this->model->relations())->paginate(5);
         return $this->success("Success", $data);
     }
 
@@ -133,7 +133,7 @@ class BaseController extends Controller
     {
         $delete = $this->model->find($id);
         if (!$delete) {
-            return ['error' => 'Id not Found!!'];
+            return $this->error("Id not found!");
         }
         $delete->delete();
 
