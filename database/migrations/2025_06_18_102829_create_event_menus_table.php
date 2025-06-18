@@ -19,7 +19,6 @@ return new class extends Migration
             $table->uuid('dish_category_id');
             $table->uuid('main_ingredient_id');
             $table->foreign('dish_category_id')->references('id')->on('dish_categories')->onDelete('cascade');
-            $table->foreign('main_ingredient_id')->references('id')->on('main_ingredients')->onDelete('cascade');
             $table->timestamps();
         });
     }
