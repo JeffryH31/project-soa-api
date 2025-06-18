@@ -14,4 +14,9 @@ class DishCategory extends Model
         'name',
         'description',
     ];
+
+    public function eventMenus()
+    {
+        return $this->hasMany(EventMenu::class);
+    }
 }
