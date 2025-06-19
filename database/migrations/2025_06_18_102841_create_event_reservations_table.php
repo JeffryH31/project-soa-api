@@ -19,6 +19,8 @@ return new class extends Migration
             $table->text('notes')->nullable();
             $table->decimal('total_price', 10, 2);
             $table->enum('status', ['pending', 'dp1', 'dp2', 'paid', 'cancelled']);
+            $table->uuid('event_space_id');
+            $table->foreign('event_space_id')->references('id')->on('event_spaces')->onDelete('cascade');
             $table->timestamps();
         });
     }
