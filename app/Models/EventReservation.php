@@ -12,7 +12,7 @@ class EventReservation extends Model
 
     protected $fillable = [
         'customer_name',
-        'event_package_id',
+        // 'event_package_id',
         'event_date',
         'notes',
         'total_price',
@@ -28,11 +28,17 @@ class EventReservation extends Model
     {
         return $this->belongsTo(EventPackage::class);
     }
+
+    public function eventMenus()
+    {
+        return $this->hasMany(EventMenu::class);
+    }
+
     public function validationRules()
     {
         return [
             'customer_name' => 'required|string|max:255',
-            'event_package_id' => 'required|uuid|exists:event_packages,id',
+            // 'event_package_id' => 'required|uuid|exists:event_packages,id',
             'event_date' => 'required|date',
             'notes' => 'nullable|string|max:500',
             'total_price' => 'required|numeric|min:0',
@@ -46,9 +52,9 @@ class EventReservation extends Model
             'customer_name.string' => 'Nama pelanggan harus berupa teks.',
             'customer_name.max' => 'Nama pelanggan maksimal 255 karakter.',
 
-            'event_package_id.required' => 'Paket acara harus dipilih.',
-            'event_package_id.uuid' => 'ID paket acara harus berupa UUID.',
-            'event_package_id.exists' => 'Paket acara yang dipilih tidak ditemukan.',
+            // 'event_package_id.required' => 'Paket acara harus dipilih.',
+            // 'event_package_id.uuid' => 'ID paket acara harus berupa UUID.',
+            // 'event_package_id.exists' => 'Paket acara yang dipilih tidak ditemukan.',
 
             'event_date.required' => 'Tanggal acara harus diisi.',
             'event_date.date' => 'Tanggal acara harus berupa tanggal yang valid.',
@@ -67,5 +73,10 @@ class EventReservation extends Model
     public function relations()
     {
         return [];
+    }
+
+    public function dishCategory()
+    {
+        return $this->belongsTo(DishCategory::class);
     }
 }
