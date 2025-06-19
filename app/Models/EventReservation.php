@@ -12,7 +12,7 @@ class EventReservation extends Model
 
     protected $fillable = [
         'customer_name',
-        'event_package_id',
+        // 'event_package_id',
         'event_date',
         'notes',
         'total_price',
@@ -38,9 +38,9 @@ class EventReservation extends Model
     {
         return [
             'customer_name' => 'required|string|max:255',
-            'event_package_id' => 'required|uuid|exists:event_packages,id',
+            // 'event_package_id' => 'required|uuid|exists:event_packages,id',
             'event_date' => 'required|date',
-            'special_request' => 'nullable|string|max:500',
+            'notes' => 'nullable|string|max:500',
             'total_price' => 'required|numeric|min:0',
             'status' => 'required|in:pending,confirmed,cancelled',
         ];
@@ -52,15 +52,15 @@ class EventReservation extends Model
             'customer_name.string' => 'Nama pelanggan harus berupa teks.',
             'customer_name.max' => 'Nama pelanggan maksimal 255 karakter.',
 
-            'event_package_id.required' => 'Paket acara harus dipilih.',
-            'event_package_id.uuid' => 'ID paket acara harus berupa UUID.',
-            'event_package_id.exists' => 'Paket acara yang dipilih tidak ditemukan.',
+            // 'event_package_id.required' => 'Paket acara harus dipilih.',
+            // 'event_package_id.uuid' => 'ID paket acara harus berupa UUID.',
+            // 'event_package_id.exists' => 'Paket acara yang dipilih tidak ditemukan.',
 
             'event_date.required' => 'Tanggal acara harus diisi.',
             'event_date.date' => 'Tanggal acara harus berupa tanggal yang valid.',
 
-            'special_request.string' => 'Permintaan khusus harus berupa teks.',
-            'special_request.max' => 'Permintaan khusus maksimal 500 karakter.',
+            'notes.string' => 'Permintaan khusus harus berupa teks.',
+            'notes.max' => 'Permintaan khusus maksimal 500 karakter.',
 
             'total_price.required' => 'Total harga harus diisi.',
             'total_price.numeric' => 'Total harga harus berupa angka.',

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('event_reservations', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('customer_name');
-            $table->uuid('event_package_id');
-            $table->foreign('event_package_id')->references('id')->on('event_packages')->onDelete('cascade');
+            // $table->uuid('event_package_id');
+            // $table->foreign('event_package_id')->references('id')->on('event_packages')->onDelete('cascade');
             $table->date('event_date');
             $table->text('notes')->nullable();
             $table->decimal('total_price', 10, 2);
