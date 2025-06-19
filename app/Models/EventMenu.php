@@ -67,6 +67,11 @@ class EventMenu extends Model
         ];
     }
 
+    public function eventReservations()
+    {
+        return $this->belongsToMany(EventReservation::class, 'event_reservations_menus', 'event_menu_id', 'event_reservation_id');
+    }
+
     public function relations()
     {
         return [];

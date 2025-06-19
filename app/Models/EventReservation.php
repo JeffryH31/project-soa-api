@@ -24,16 +24,6 @@ class EventReservation extends Model
         'total_price' => 'decimal:2',
     ];
 
-    public function eventPackage()
-    {
-        return $this->belongsTo(EventPackage::class);
-    }
-
-    public function eventMenus()
-    {
-        return $this->hasMany(EventMenu::class);
-    }
-
     public function validationRules()
     {
         return [
@@ -70,9 +60,19 @@ class EventReservation extends Model
             'status.in' => 'Status harus salah satu dari: pending, confirmed, cancelled.',
         ];
     }
+
+    // public function eventPackage()
+    // {
+    //     return $this->belongsTo(EventPackage::class);
+    // }
+
+    public function eventMenus()
+    {
+        return $this->belongsToMany(EventReservation::class, 'event_reservations_menus', 'event_reservation_id', 'event_menu_id');
+    }
     public function relations()
     {
-        return [];
+        return ['eventMenus'];
     }
 
     public function dishCategory()
