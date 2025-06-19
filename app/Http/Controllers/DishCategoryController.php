@@ -7,7 +7,7 @@ use App\Models\DishCategory;
 
 class DishCategoryController extends BaseController
 {
-    public function __construct(\App\Models\DishCategory $model)
+    public function __construct(DishCategory $model)
     {
         parent::__construct($model);
     }

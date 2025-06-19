@@ -32,13 +32,13 @@ class EventMenu extends Model
         return $this->belongsToMany(EventPackage::class, 'event_package_menus');
     }
 
-    public function validationRules()
+    public function validationRules($isUpdate = false)
     {
         return [
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
-            'image' => 'required|mimes:jpg,jpeg,png|max:5120',
+            'image' => $isUpdate ? 'nullable|image|mimes:jpeg,png,jpg|max:5120' : 'required|image|mimes:jpeg,png,jpg|max:5120',
             'dish_category_id' => 'required|uuid|exists:dish_categories,id',
         ];
     }
