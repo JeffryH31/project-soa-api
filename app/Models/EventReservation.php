@@ -75,7 +75,7 @@ class EventReservation extends Model
 
     public function relations()
     {
-        return ['eventMenus'];
+        return [];
     }
 
     public function dishCategory()
