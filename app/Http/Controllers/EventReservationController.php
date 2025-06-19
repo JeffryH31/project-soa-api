@@ -36,4 +36,33 @@ class EventReservationController extends BaseController
         }
         return $this->success("Success", $reservation);
     }
+
+    public function update(Request $request, $id)
+    {
+        $reservation = $this->model->findOrFail($id);
+
+        $requestFillable = $request->only($this->model->getFillable());
+        $valid = Validator::make($requestFillable, $this->model->validationRules($id), $this->model->validationMessages());
+
+        if ($valid->fails()) {
+            return $this->error($valid->errors()->first());
+        }
+
+        $updated = $reservation->update([
+            'customer_name' => $requestFillable['customer_name'],
+            'notes' => $requestFillable['notes'],
+            'start_date' => $requestFillable['start_date'],
+            'end_date' => $requestFillable['end_date'],
+            'pax' => $requestFillable['pax'],
+            'event_space_id' => $requestFillable['event_space_id'],
+        ]);
+        if ($request->has('event_menu_id')) {
+            $reservation->eventMenus()->sync($request->event_menu_id);
+        } else {
+            $reservation->eventMenus()->sync([]);
+        }
+
+        return $this->success("Success", $reservation);
+
+    }
 }
