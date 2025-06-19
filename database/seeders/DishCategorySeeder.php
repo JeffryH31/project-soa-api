@@ -16,12 +16,14 @@ class DishCategorySeeder extends Seeder
         $categories = [
             'Appetizer',
             'Soup',
+            'Dimsum',
             'Main Course',
             'Dessert',
             'Beverage',
+            'Wine',
             'Salad',
             'Rice & Noodles',
-            'Seafood'
+            'Seafood',
         ];
 
         foreach ($categories as $category) {
