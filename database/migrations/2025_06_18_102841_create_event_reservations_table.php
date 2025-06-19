@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->text('notes')->nullable();
-            $table->decimal('total_price', 10, 2);
+            $table->decimal('total_price', 10, 2)->default(0);
             $table->enum('status', ['pending', 'dp1', 'dp2', 'paid', 'cancelled']);
             $table->uuid('event_space_id');
             $table->foreign('event_space_id')->references('id')->on('event_spaces')->onDelete('cascade');
