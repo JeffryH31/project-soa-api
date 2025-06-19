@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('customer_name');
             $table->date('start_date');
             $table->date('end_date');
+            $table->integer('pax')->default(0);
             $table->text('notes')->nullable();
             $table->decimal('total_price', 10, 2)->default(0);
             $table->enum('status', ['pending', 'dp1', 'dp2', 'paid', 'cancelled']);
