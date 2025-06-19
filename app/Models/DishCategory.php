@@ -42,6 +42,6 @@ class DishCategory extends Model
 
     public function relations()
     {
-        return [];
+        return ['eventMenus'];
     }
 }

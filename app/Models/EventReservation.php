@@ -28,6 +28,12 @@ class EventReservation extends Model
     {
         return $this->belongsTo(EventPackage::class);
     }
+
+    public function eventMenus()
+    {
+        return $this->hasMany(EventMenu::class);
+    }
+
     public function validationRules()
     {
         return [
@@ -67,5 +73,10 @@ class EventReservation extends Model
     public function relations()
     {
         return [];
+    }
+
+    public function dishCategory()
+    {
+        return $this->belongsTo(DishCategory::class);
     }
 }
