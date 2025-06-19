@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             EventAddOnSeeder::class,
             EventPackageSeeder::class,
             EventReservationSeeder::class,
+            EventReservationMenuSeeder::class,
         ]);
     }
 }
