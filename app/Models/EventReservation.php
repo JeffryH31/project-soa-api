@@ -34,7 +34,7 @@ class EventReservation extends Model
             'customer_name' => 'required|string|max:255',
             'event_package_id' => 'required|uuid|exists:event_packages,id',
             'event_date' => 'required|date',
-            'special_request' => 'nullable|string|max:500',
+            'notes' => 'nullable|string|max:500',
             'total_price' => 'required|numeric|min:0',
             'status' => 'required|in:pending,confirmed,cancelled',
         ];
@@ -53,8 +53,8 @@ class EventReservation extends Model
             'event_date.required' => 'Tanggal acara harus diisi.',
             'event_date.date' => 'Tanggal acara harus berupa tanggal yang valid.',
 
-            'special_request.string' => 'Permintaan khusus harus berupa teks.',
-            'special_request.max' => 'Permintaan khusus maksimal 500 karakter.',
+            'notes.string' => 'Permintaan khusus harus berupa teks.',
+            'notes.max' => 'Permintaan khusus maksimal 500 karakter.',
 
             'total_price.required' => 'Total harga harus diisi.',
             'total_price.numeric' => 'Total harga harus berupa angka.',
