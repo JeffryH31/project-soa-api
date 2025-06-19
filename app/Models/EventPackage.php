@@ -70,7 +70,7 @@ class EventPackage extends Model
 
     public function eventAddOns()
     {
-        return $this->belongsToMany(EventAddOn::class, 'event_reservations_addons');
+        return $this->belongsToMany(EventAddOn::class, 'event_reservation_add_ons');
     }
 
     public function eventReservations()

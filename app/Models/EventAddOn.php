@@ -35,12 +35,19 @@ class EventAddOn extends Model
             'price.min' => 'Harga minimal 0.',
         ];
     }
-    public function eventPackages()
+
+    // public function eventPackages()
+    // {
+    //     return $this->belongsToMany(EventPackage::class, 'event_reservation_add_ons');
+    // }
+
+    public function eventReservations()
     {
-        return $this->belongsToMany(EventPackage::class, 'event_reservations_addons');
+        return $this->belongsToMany(EventReservation::class, 'event_reservation_add_ons', 'event_add_on_id', 'event_reservation_id');
     }
 
-    public function relations(){
+    public function relations()
+    {
         return [];
     }
 }

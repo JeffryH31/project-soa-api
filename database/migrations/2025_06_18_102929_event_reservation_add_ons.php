@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('event_reservations_addons', function (Blueprint $table) {
-            $table->uuid('event_package_id');
+        Schema::create('event_reservation_add_ons', function (Blueprint $table) {
+            $table->uuid('event_reservation_id');
             $table->uuid('event_add_on_id');
-            $table->foreign('event_package_id')->references('id')->on('event_packages')->onDelete('cascade');
+            $table->foreign('event_reservation_id')->references('id')->on('event_reservations')->onDelete('cascade');
             $table->foreign('event_add_on_id')->references('id')->on('event_add_ons')->onDelete('cascade');
         });
     }

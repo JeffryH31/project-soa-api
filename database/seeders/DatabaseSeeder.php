@@ -18,9 +18,9 @@ class DatabaseSeeder extends Seeder
             EventSpaceSeeder::class,
             EventMenuSeeder::class,
             EventAddOnSeeder::class,
-            EventPackageSeeder::class,
-            EventReservationSeeder::class,
-            EventReservationMenuSeeder::class,
+            // EventPackageSeeder::class,
+            // EventReservationSeeder::class,
+            // EventReservationMenuSeeder::class,
         ]);
     }
 }

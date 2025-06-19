@@ -15,7 +15,7 @@ return new class extends Migration
          $table->uuid('id')->primary();
             $table->string('name');
             $table->text('description');
-            $table->decimal('price', 10, 2);
+            $table->decimal('price', 18, 2);
             $table->string('image')->nullable();
             $table->uuid('dish_category_id');
             $table->foreign('dish_category_id')->references('id')->on('dish_categories')->onDelete('cascade');

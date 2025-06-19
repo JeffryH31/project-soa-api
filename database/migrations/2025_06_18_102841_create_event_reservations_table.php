@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('end_date');
             $table->integer('pax')->default(0);
             $table->text('notes')->nullable();
-            $table->decimal('total_price', 10, 2)->default(0);
+            $table->decimal('total_price', 18, 2)->default(0);
             $table->enum('status', ['pending', 'dp1', 'dp2', 'paid', 'cancelled'])->default('pending');
             $table->uuid('event_space_id');
             $table->foreign('event_space_id')->references('id')->on('event_spaces')->onDelete('cascade');

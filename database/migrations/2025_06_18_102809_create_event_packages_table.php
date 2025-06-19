@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->text('description');
-            $table->decimal('price', 10, 2);
+            $table->decimal('price', 18, 2);
             $table->integer('pax');
             $table->uuid('event_space_id');
             $table->foreign('event_space_id')->references('id')->on('event_spaces')->onDelete('cascade');

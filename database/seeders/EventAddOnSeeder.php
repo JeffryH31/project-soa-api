@@ -16,63 +16,63 @@ class EventAddOnSeeder extends Seeder
         $addOns = [
             [
                 'name' => 'Professional Photography',
-                'price' => 500.00,
+                'price' => 5000000,
             ],
             [
                 'name' => 'Live Band',
-                'price' => 800.00,
+                'price' => 8000000,
             ],
             [
                 'name' => 'DJ Services',
-                'price' => 400.00,
+                'price' => 3500000,
             ],
             [
                 'name' => 'Flower Decoration',
-                'price' => 300.00,
+                'price' => 4000000,
             ],
             [
                 'name' => 'Balloon Decoration',
-                'price' => 150.00,
+                'price' => 1500000,
             ],
             [
                 'name' => 'Wedding Cake',
-                'price' => 200.00,
+                'price' => 2000000,
             ],
             [
                 'name' => 'Champagne Service',
-                'price' => 25.00,
+                'price' => 750000,
             ],
             [
                 'name' => 'Coffee & Tea Service',
-                'price' => 8.00,
+                'price' => 50000,
             ],
             [
                 'name' => 'Ice Cream Bar',
-                'price' => 15.00,
+                'price' => 45000,
             ],
             [
                 'name' => 'Candy Buffet',
-                'price' => 12.00,
+                'price' => 40000,
             ],
             [
                 'name' => 'Photo Booth',
-                'price' => 350.00,
+                'price' => 3000000,
             ],
             [
                 'name' => 'Videography',
-                'price' => 600.00,
+                'price' => 6500000,
             ],
             [
                 'name' => 'Wedding Coordinator',
-                'price' => 400.00,
+                'price' => 5000000,
             ],
             [
                 'name' => 'Limo Service',
-                'price' => 200.00,
+                'price' => 2500000,
             ],
             [
                 'name' => 'Guest Book',
-                'price' => 30.00,
+                'price' => 300000,
             ]
         ];
 
