@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('event_reservations', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('customer_name');
-            $table->date('event_date');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->text('notes')->nullable();
             $table->decimal('total_price', 10, 2);
             $table->enum('status', ['pending', 'dp1', 'dp2', 'paid', 'cancelled']);

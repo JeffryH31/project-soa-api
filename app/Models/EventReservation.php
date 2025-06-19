@@ -70,6 +70,7 @@ class EventReservation extends Model
     {
         return $this->belongsToMany(EventReservation::class, 'event_reservations_menus', 'event_reservation_id', 'event_menu_id');
     }
+
     public function relations()
     {
         return ['eventMenus'];
