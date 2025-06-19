@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\EventMenu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class EventMenuController extends BaseController
 {
@@ -14,13 +15,23 @@ class EventMenuController extends BaseController
 
     public function store(Request $request)
     {
-        $data = $request->all();
+        $requestFillable = $request->only($this->model->getFillable());
+
+        $valid = Validator::make($requestFillable, $this->model->validationRules(), $this->model->validationMessages());
+        if ($valid->fails()) {
+            return $this->error($valid->errors()->first());
+        }
+
+        $image_path = null;
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('images', 'public');
-            $data['image'] = $path;
+            $file = $request->file('image');
+            $file_name =  $request->name . '.' . $file->getClientOriginalExtension();
+            $image_path = $file->storePubliclyAs('event/menu',  $file_name, 'public');
+            $requestFillable['image'] = $image_path;
         }
-        $newRequest = new Request($data);
-        return parent::store($newRequest);
+
+        $data =  $this->model->create($requestFillable);
+        return $this->success("Success", $data);
     }
 }

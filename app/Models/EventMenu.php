@@ -38,7 +38,7 @@ class EventMenu extends Model
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
-            'image' => 'nullable|string|max:255',
+            'image' => 'required|mimes:jpg,jpeg,png|max:5120',
             'dish_category_id' => 'required|uuid|exists:dish_categories,id',
         ];
     }
@@ -57,8 +57,9 @@ class EventMenu extends Model
             'price.numeric' => 'Harga harus berupa angka.',
             'price.min' => 'Harga minimal 0.',
 
-            'image.string' => 'Path gambar harus berupa teks.',
-            'image.max' => 'Path gambar maksimal 255 karakter.',
+            'image.required' => 'Gambar harus diunggah.',
+            'image.mimes' => 'Gambar harus berupa file dengan format jpg, jpeg, atau png.',
+            'image.max' => 'Ukuran gambar maksimal 5 MB.',
 
             'dish_category_id.required' => 'Kategori hidangan harus diisi.',
             'dish_category_id.uuid' => 'ID kategori hidangan harus berupa UUID.',
