@@ -4,10 +4,14 @@ use App\Http\Controllers\EventAddOnController;
 use App\Http\Controllers\EventSpaceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventPackageController;
+use App\Http\Controllers\DishCategoryController;
+use App\Http\Controllers\EventMenuController;
 
 Route::apiResource('event_spaces', EventSpaceController::class);
 Route::apiResource('event_packages', EventPackageController::class);
 Route::apiResource('event_add_ons', EventAddOnController::class);
+Route::apiResource('dish_categories', DishCategoryController::class);
+Route::apiResource('event_menus', EventMenuController::class);
 Route::get('event_packages/search', [EventPackageController::class, 'search']);
 
 // Event Package Routes

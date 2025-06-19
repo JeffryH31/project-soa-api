@@ -30,7 +30,7 @@ class BaseController extends Controller
      */
     public function index(Request $request)
     {
-        $perPage = $request->query('per_page', 5); // default tetap 5 kalau gak dikirim
+        $perPage = $request->query('per_page', 5);
         $data = $this->model->with($this->model->relations())->paginate($perPage);
         return $this->success("Success", $data);
     }
