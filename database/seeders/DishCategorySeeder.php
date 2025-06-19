@@ -16,7 +16,6 @@ class DishCategorySeeder extends Seeder
         $categories = [
             'Appetizer',
             'Beverage',
-            'Salad',
             'Dimsum',
             'Rice & Noodles',
             'Main Course',
