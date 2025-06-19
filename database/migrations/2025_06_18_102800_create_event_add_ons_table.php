@@ -15,7 +15,6 @@ return new class extends Migration
          $table->uuid('id')->primary();
             $table->string('name');
             $table->decimal('price', 10, 2);
-            $table->integer('quantity');
             $table->timestamps();
         });
     }
