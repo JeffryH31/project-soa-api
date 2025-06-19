@@ -12,11 +12,13 @@ class EventReservation extends Model
 
     protected $fillable = [
         'customer_name',
-        // 'event_package_id',
-        'event_date',
+        'start_date',
+        'end_date',
+        'pax',
         'notes',
         'total_price',
         'status',
+        'event_space_id',
     ];
 
     protected $casts = [
