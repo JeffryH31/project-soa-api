@@ -5,10 +5,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventPackageController;
 use App\Http\Controllers\DishCategoryController;
+use App\Http\Controllers\EventMenuController;
 
 Route::apiResource('event_spaces', EventSpaceController::class);
 Route::apiResource('event_packages', EventPackageController::class);
 Route::apiResource('dish_categories', DishCategoryController::class);
+Route::apiResource('event_menus', EventMenuController::class);
 Route::get('event_packages/search', [EventPackageController::class, 'search']);
 
 // Event Package Routes
