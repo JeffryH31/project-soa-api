@@ -10,25 +10,24 @@ class DishCategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
-    */
+     */
     public function run(): void
     {
         $categories = [
             'Appetizer',
-            'Soup',
-            'Dimsum',
-            'Main Course',
-            'Dessert',
             'Beverage',
-            'Wine',
             'Salad',
+            'Dimsum',
             'Rice & Noodles',
-            'Seafood',
+            'Main Course',
+            'Soup',
+            'Wine',
+            'Dessert',
         ];
 
-        foreach ($categories as $category) {
+        foreach ($categories as $index => $category) {
             DishCategory::create([
-                'name' => $category
+                'name' => $category,
             ]);
         }
     }

@@ -12,6 +12,7 @@ class DishCategory extends Model
 
     protected $fillable = [
         'name',
+        'order',
     ];
 
     protected $casts = [

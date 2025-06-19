@@ -84,14 +84,14 @@ class EventMenuSeeder extends Seeder
                 'name' => 'Chow Mein',
                 'description' => 'Classic stir-fried noodles with vegetables and meat.',
                 'price' => 420000,
-                'dish_category_id' => DishCategory::where('name', 'Main Course')->first()->id,
+                'dish_category_id' => DishCategory::where('name', 'Rice & Noodles')->first()->id,
             ],
             [
                 'image' => 'event/menu/Congee.png',
                 'name' => 'Congee',
                 'description' => 'Warm rice porridge served with savory toppings.',
                 'price' => 400000,
-                'dish_category_id' => DishCategory::where('name', 'Main Course')->first()->id,
+                'dish_category_id' => DishCategory::where('name', 'Rice & Noodles')->first()->id,
             ],
             [
                 'image' => 'event/menu/Corn Soup.png',
@@ -119,7 +119,7 @@ class EventMenuSeeder extends Seeder
                 'name' => 'Egg Fried Rice',
                 'description' => 'Fragrant fried rice tossed with egg and scallions.',
                 'price' => 410000,
-                'dish_category_id' => DishCategory::where('name', 'Main Course')->first()->id,
+                'dish_category_id' => DishCategory::where('name', 'Rice & Noodles')->first()->id,
             ],
             [
                 'image' => 'event/menu/Orange Juice.png',
