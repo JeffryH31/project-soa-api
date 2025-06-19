@@ -14,8 +14,34 @@ class DishCategory extends Model
         'name',
     ];
 
+    protected $casts = [
+        'id' => 'string',
+        'name' => 'string',
+    ];
+
     public function eventMenus()
     {
         return $this->hasMany(EventMenu::class);
+    }
+
+    public function validationRules()
+    {
+        return [
+            'name' => 'required|string|max:255',
+        ];
+    }
+
+    public function validationMessages()
+    {
+        return [
+            'name.required' => 'Nama kategori harus diisi.',
+            'name.string' => 'Nama kategori harus berupa teks.',
+            'name.max' => 'Nama kategori maksimal 255 karakter.',
+        ];
+    }
+
+    public function relations()
+    {
+        return [];
     }
 }

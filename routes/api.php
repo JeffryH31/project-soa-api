@@ -4,9 +4,11 @@ use App\Http\Controllers\EventSpaceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventPackageController;
+use App\Http\Controllers\DishCategoryController;
 
 Route::apiResource('event_spaces', EventSpaceController::class);
 Route::apiResource('event_packages', EventPackageController::class);
+Route::apiResource('dish_categories', DishCategoryController::class);
 Route::get('event_packages/search', [EventPackageController::class, 'search']);
 
 // Event Package Routes
