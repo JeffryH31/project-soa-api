@@ -15,7 +15,6 @@ class EventMenu extends Model
         'description',
         'price',
         'dish_category_id',
-        'main_ingredient_id',
     ];
 
     protected $casts = [

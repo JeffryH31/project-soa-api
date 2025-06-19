@@ -39,4 +39,8 @@ class EventAddOn extends Model
     {
         return $this->belongsToMany(EventPackage::class, 'event_reservations_addons');
     }
+
+    public function relations(){
+        return [];
+    }
 }

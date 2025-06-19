@@ -14,7 +14,7 @@ class EventReservation extends Model
         'customer_name',
         'event_package_id',
         'event_date',
-        'special_request',
+        'notes',
         'total_price',
         'status',
     ];
