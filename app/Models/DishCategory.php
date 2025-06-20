@@ -45,4 +45,9 @@ class DishCategory extends Model
     {
         return ['eventMenus'];
     }
+
+    public function searchableFields()
+    {
+        return ['name'];
+    }
 }

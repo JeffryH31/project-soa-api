@@ -62,4 +62,9 @@ class EventSpace extends Model
     {
         return [];
     }
+
+    public function searchableFields()
+    {
+        return ['name', 'location'];
+    }
 }

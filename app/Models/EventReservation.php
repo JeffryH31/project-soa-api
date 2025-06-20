@@ -101,4 +101,9 @@ class EventReservation extends Model
     {
         return $this->belongsTo(DishCategory::class);
     }
+
+    public function searchableFields()
+    {
+        return ['customer_name', 'notes', 'status'];
+    }
 }

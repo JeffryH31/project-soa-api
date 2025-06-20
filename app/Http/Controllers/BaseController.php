@@ -31,8 +31,21 @@ class BaseController extends Controller
     public function index(Request $request)
     {
         $perPage = $request->query('per_page', 5);
-        $data = $this->model->with($this->model->relations())->paginate($perPage);
-        return $this->success("Success", $data);
+        $search = $request->query('search');
+
+        $query = method_exists($this->model, 'relations')
+            ? $this->model->with($this->model->relations())
+            : $this->model->query();
+
+        if ($search && method_exists($this->model, 'searchableFields')) {
+            $query->where(function ($q) use ($search) {
+                foreach ($this->model->searchableFields() as $field) {
+                    $q->orWhere($field, 'LIKE', "%$search%");
+                }
+            });
+        }
+
+        return $this->success("Success", $query->paginate($perPage));
     }
 
 

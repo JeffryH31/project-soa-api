@@ -50,4 +50,8 @@ class EventAddOn extends Model
     {
         return [];
     }
+    public function searchableFields()
+    {
+        return ['name'];
+    }
 }
