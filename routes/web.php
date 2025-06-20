@@ -1,7 +1,13 @@
 <?php
 
+use App\Jobs\RabbitMQJob;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/test', function () {
+    RabbitMQJob::dispatch();
+    return 'Job dispatched!';
 });

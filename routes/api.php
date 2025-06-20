@@ -17,6 +17,9 @@ Route::apiResource('event_reservations', EventReservationController::class);
 
 Route::apiResource('event_testing', EventMenuController::class);
 
+Route::get('/call-member-service', [App\Http\Controllers\RabbitRpcController::class, 'callMemberService']);
+
+
 // Route::post('event_menus/upload', [EventMenuController::class, 'store']);
 // Route::get('event_spaces/search', [EventSpaceController::class, 'search']);
 // Route::get('event_menus/search', [EventMenuController::class, 'search']);

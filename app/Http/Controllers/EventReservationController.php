@@ -8,6 +8,7 @@ use App\Utils\HttpResponseCode;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 
 class EventReservationController extends BaseController
@@ -74,6 +75,7 @@ class EventReservationController extends BaseController
 
         DB::beginTransaction();
         try {
+
             $reservation =  $this->model->create([
                 'customer_name' => $requestFillable['customer_name'],
                 'notes' => $requestFillable['notes'],
@@ -92,6 +94,30 @@ class EventReservationController extends BaseController
             if ($request->has('event_add_on_id')) {
                 $reservation->eventAddOns()->attach($request->event_add_on_id);
             }
+
+            // Send payment request to the payment service
+            // $paymentData = [
+            //     'customer_id' => $requestFillable['customer_id'],
+            //     'requester_type' => 3, // 3 for Event Service
+            //     'requester_id' => $reservation->id,
+            //     'secondary_requester_id' => null,
+            //     'payment_amount' => $requestFillable['total_price'],
+            // ];
+
+            // $response = Http::post(env('PAYMENT_SERVICE_URL') . '/routename', $paymentData);
+            // if ($response->successful()) {
+            //     $paymentResponse = $response->json();
+
+            //     if ($paymentResponse['status'] === 'success') {
+            //         $reservation->update(['payment_status' => 'paid']);
+            //     } else {
+            //         DB::rollBack();
+            //         return $this->error("Payment failed: " . $paymentResponse['message']);
+            //     }
+            // } elseif ($response->clientError() || $response->serverError()) {
+            //     DB::rollBack();
+            //     return $this->error("Payment service error: " . $response->body());
+            // }
 
             DB::commit();
             return $this->success("Success", $reservation);
