@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('event_add_ons', function (Blueprint $table) {
          $table->uuid('id')->primary();
             $table->string('name');
-            $table->decimal('price', 10, 2);
+            $table->decimal('price', 18, 2);
             $table->timestamps();
         });
     }

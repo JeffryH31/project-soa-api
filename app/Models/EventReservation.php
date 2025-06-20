@@ -20,7 +20,7 @@ class EventReservation extends Model
         'status',
         'event_space_id',
         'event_menu_id',
-        // 'event_add_ons_id',
+        'event_add_ons_id',
     ];
 
     protected $casts = [
@@ -35,9 +35,9 @@ class EventReservation extends Model
             // 'event_package_id' => 'required|uuid|exists:event_packages,id',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
-            'notes' => 'nullable|string|max:500',
-            'pax' => 'required|numeric|max:500',
-            'total_price' => 'nullable|numeric|min:0',
+            'notes' => 'nullable|string|max:1000',
+            'pax' => 'required|numeric|max:1000',
+            'total_price' => 'required|numeric|min:0',
             'event_space_id' => 'required|uuid|exists:event_spaces,id',
             'status' => 'nullable|in:pending,dp1,dp2,paid,cancelled',
         ];
@@ -66,7 +66,7 @@ class EventReservation extends Model
 
             'total_price.required' => 'Total harga harus diisi.',
             'total_price.numeric' => 'Total harga harus berupa angka.',
-            'total_price.min' => 'Total harga tidak boleh kurang dari 0.',
+            'total_price.min' => 'Total harga tidak bisa kurang dari 0.',
 
             'status.required' => 'Status harus diisi.',
             'status.in' => 'Status harus salah satu dari: pending, confirmed, cancelled.',
@@ -87,9 +87,14 @@ class EventReservation extends Model
         return $this->belongsToMany(EventMenu::class, 'event_reservation_menus', 'event_reservation_id', 'event_menu_id');
     }
 
+    public function eventAddOns()
+    {
+        return $this->belongsToMany(EventAddOn::class, 'event_reservation_add_ons', 'event_reservation_id', 'event_add_on_id');
+    }
+
     public function relations()
     {
-        return ['eventMenus'];
+        return ['eventMenus', 'eventAddOns'];
     }
 
     public function dishCategory()
